@@ -1,0 +1,11 @@
+<button id="get-time" type="button">Get Time from Server</button>
+<ul id="time-results"></ul>
+
+<input type="number" id="value" name="value" width="3" min="0" max="999"/>
+<button id="double-it" type="button">Double It!</button>
+<div id="double-it-result"></div>
+
+<%= script_tag "/assets/javascript/views/IndexView.js" %>
+<script type="text/javascript">
+  var indexView = new app.IndexView();
+</script>

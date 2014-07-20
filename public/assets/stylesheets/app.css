@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 20px;
+}
+
+button {
+  padding: 6px 8px;
+}
+
+input[type=number] {
+  padding: 4px;
+}
