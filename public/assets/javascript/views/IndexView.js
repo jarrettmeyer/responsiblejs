@@ -4,8 +4,6 @@ window.app.IndexView = (function () {
     this.settings = $.extend(defaults, options);
     this.ajaxUtil = this.settings.ajaxUtil || new app.AjaxUtil();
     this.dateUtil = this.settings.dateUtil || new app.DateUtil();
-    this.times = [];
-    this.value = null;
     this.initialize();
   }
 
@@ -27,6 +25,8 @@ window.app.IndexView = (function () {
 
   IndexView.prototype.initialize = function () {
     this.setupPageBindings();   
+    this.times = [];
+    this.value = null;
   };
 
   IndexView.prototype.setupPageBindings = function() {
