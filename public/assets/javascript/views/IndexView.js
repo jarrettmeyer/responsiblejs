@@ -1,10 +1,9 @@
 window.app.IndexView = (function () {
 
   function IndexView(options) {
-    if (!app.ajaxUtil) {
-      throw Error("app.ajaxUtil has not been defined.");
-    }
     this.settings = $.extend(defaults, options);
+    this.ajaxUtil = this.settings.ajaxUtil || new app.AjaxUtil();
+    this.dateUtil = this.settings.dateUtil || new app.DateUtil();
     this.times = [];
     this.value = null;
     this.initialize();

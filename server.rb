@@ -25,6 +25,10 @@ post '/double' do
   { value: 2 * x }.to_json
 end
 
+get '/test' do
+  send_file './views/SpecRunner.html'
+end
+
 get '/time' do
   content_type :json
   { timestamp: Time.now.to_i }.to_json
