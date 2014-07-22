@@ -6,12 +6,12 @@ describe("IndexView", function () {
     view = new app.IndexView();
   });
 
-  it("has an ajaxUtil attribute", function () {
-    expect(view.ajaxUtil).toBeDefined();
+  it("has an ajax attribute", function () {
+    expect(view.ajax).toBeDefined();
   });
 
-  it("has a dateUtil attribute", function () {
-    expect(view.dateUtil).toBeDefined();
+  it("has a date attribute", function () {
+    expect(view.date).toBeDefined();
   });
 
   it("has a settings attribute", function () {
@@ -21,14 +21,31 @@ describe("IndexView", function () {
   describe("doubleIt", function () {
 
     beforeEach(function () {
-      spyOn(view.ajaxUtil, "postDouble").and.callFake(function () {
+      $("body").append('<input type="number" name="value" id="value" />');
+      $("body").append('<button id="double-it">Double It</button>');
+      view = new app.IndexView();
+      spyOn(view.ajax, "postDouble").and.callFake(function () {
         view.setValue(2);
       });
     });
 
+    afterEach(function () {
+      $('#value').remove();
+      $('#double-it').remove();
+    });
+
     it("calls postDouble function", function () {
       view.doubleIt();
-      expect(view.ajaxUtil.postDouble.calls.count()).toEqual(1);
+      expect(view.ajax.postDouble.calls.count()).toEqual(1);
+    });
+
+    it("raises an event when the button is clicked", function (done) {
+      view.events.listen('doubleIt-begin', function () {
+        expect(true).toBeTruthy();
+        done();
+      });
+      $("#value").val(4);
+      $("#double-it").trigger("click", {});
     });
 
     it("sets the value attribute", function (done) {
@@ -44,6 +61,7 @@ describe("IndexView", function () {
   describe("getTime", function () {
 
     beforeEach(function () {
+      view = new app.IndexView();
     });
 
     it("appends time to an array", function (done) {

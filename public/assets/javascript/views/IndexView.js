@@ -11,15 +11,15 @@ window.app.IndexView = (function () {
 
   IndexView.prototype.doubleIt = function(callback) {
     var value = $("#value").val();
-    this.ajaxUtil.postDouble(value, function (result) {
+    this.ajax.postDouble(value, function (result) {
       this.setValue(result.value, callback);
     }.bind(this));
   };
 
   IndexView.prototype.getTime = function () {
-    this.ajaxUtil.getTime(function (result) {
+    this.ajax.getTime(function (result) {
       this.times.push(result);
-      var date = this.dateUtil.fromEpoch(result.timestamp);
+      var date = this.date.fromEpoch(result.timestamp);
       $("#time-results").append("<li>" + date + "</li>");
       this.events.raise("getTime-completed", { timestamp: result.timestamp });
     }.bind(this));
@@ -29,8 +29,8 @@ window.app.IndexView = (function () {
     this.setupPageBindings();   
     this.times = [];
     this.value = null;
-    this.ajaxUtil = new app.AjaxUtil();
-    this.dateUtil = new app.DateUtil();
+    this.ajax = new app.AjaxUtil();
+    this.date = new app.DateUtil();
     this.events = new app.EventUtil(this);
   };
 
