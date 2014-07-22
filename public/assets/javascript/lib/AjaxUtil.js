@@ -4,35 +4,28 @@ if (!window.app) {
 
 window.app.AjaxUtil = (function () {
 
-  function AjaxUtil() {
-    if (!$) {
-      throw Error("jQuery has not been defined.");
-    }
+  var getTime = function (callback) {
+    send("get", "/time", {}, callback);
   }
 
-  AjaxUtil.prototype.getTime = function(callback) {
-    this.send("get", "/time", {}, callback);
-  };
-
-  AjaxUtil.prototype.postDouble = function(value, callback) {
+  var postDouble = function (value, callback) {
     var data = { x: value };
-    this.send("post", "/double", data, callback);
-  };
+    send("post", "/double", data, callback);
+  }
 
-  AjaxUtil.prototype.send = function(type, url, data, callback) {
-    if (data) {
-      console.log("sending ", data, " to ", url);
-    }
-    $[type](url, data, function (result) {
+  var send = function(type, url, data, callback) {
+    console.log("Sending to ", type, url, " Data: ", data);
+    $[type](url, data, function(result) {
       console.log(url, " returned with ", result);
-      if (callback) { 
-        callback(result); 
-      } else {
-        console.log("No callback to fire.");
-      }      
-    });
-  };
+      if (callback) {
+        callback(result);
+      }
+    }); 
+  }
 
-  return AjaxUtil;
+  return {
+    getTime: getTime,
+    postDouble: postDouble
+  };
 
 }).call(this);

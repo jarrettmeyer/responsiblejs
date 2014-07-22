@@ -26,11 +26,12 @@ window.app.IndexView = (function () {
   };
 
   IndexView.prototype.initialize = function () {
-    this.setupPageBindings();   
+    this.setupPageBindings();
+    $("#value").val(1);
     this.times = [];
     this.value = null;
-    this.ajax = new app.AjaxUtil();
-    this.date = new app.DateUtil();
+    this.ajax = app.AjaxUtil;
+    this.date = app.DateUtil;
     this.events = new app.EventUtil(this);
   };
 
@@ -47,7 +48,7 @@ window.app.IndexView = (function () {
 
   IndexView.prototype.setValue = function (value) {
     this.value = value;
-    $("#double-it-result").html("Value = " + value);
+    $("#value").val(value);
     this.events.raise("setValue-completed", { value: value });
   };
 

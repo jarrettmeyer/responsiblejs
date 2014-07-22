@@ -3,7 +3,7 @@ describe("DateUtil", function () {
   var dateUtil, result;
 
   beforeEach(function () {
-    dateUtil = new app.DateUtil();
+    dateUtil = app.DateUtil;
   });
 
   describe("fromEpoch", function () {
