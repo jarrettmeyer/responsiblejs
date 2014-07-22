@@ -32,7 +32,7 @@ describe("IndexView", function () {
     });
 
     it("sets the value attribute", function (done) {
-      $(view).on("setValue-completed", function (value) {
+      view.events.listen("setValue-completed", function (value) {
         expect(view.value).toEqual(2);
         done();
       });
@@ -48,7 +48,7 @@ describe("IndexView", function () {
 
     it("appends time to an array", function (done) {
       expect(view.times.length).toEqual(0);
-      $(view).on("getTime-completed", function () {
+      view.events.listen("getTime-completed", function (data) {
         expect(view.times.length).toEqual(1);
         done();
       })

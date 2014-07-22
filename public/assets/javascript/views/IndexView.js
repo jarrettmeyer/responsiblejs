@@ -21,7 +21,7 @@ window.app.IndexView = (function () {
       this.times.push(result);
       var date = this.dateUtil.fromEpoch(result.timestamp);
       $("#time-results").append("<li>" + date + "</li>");
-      this.events.raise(this, "getTime-completed", { timestamp: result.timestamp });
+      this.events.raise("getTime-completed", { timestamp: result.timestamp });
     }.bind(this));
   };
 
@@ -29,18 +29,18 @@ window.app.IndexView = (function () {
     this.setupPageBindings();   
     this.times = [];
     this.value = null;
-    this.ajaxUtil = this.settings.ajaxUtil || new app.AjaxUtil();
-    this.dateUtil = this.settings.dateUtil || new app.DateUtil();
-    this.events = this.settings.events || new app.EventUtil();
+    this.ajaxUtil = new app.AjaxUtil();
+    this.dateUtil = new app.DateUtil();
+    this.events = new app.EventUtil(this);
   };
 
   IndexView.prototype.setupPageBindings = function() {
     $("#get-time").on("click", function () {
-      this.events.raise(this, "getTime-begin", {});
+      this.events.raise("getTime-begin", {});
       this.getTime();
     }.bind(this));
     $("#double-it").on("click", function () {
-      this.events.raise(this, "doubleIt-begin", {});
+      this.events.raise("doubleIt-begin", {});
       this.doubleIt();
     }.bind(this));
   };
@@ -48,7 +48,7 @@ window.app.IndexView = (function () {
   IndexView.prototype.setValue = function (value) {
     this.value = value;
     $("#double-it-result").html("Value = " + value);
-    this.events.raise(this, "setValue-completed", { value: value });
+    this.events.raise("setValue-completed", { value: value });
   };
 
   var defaults = {
