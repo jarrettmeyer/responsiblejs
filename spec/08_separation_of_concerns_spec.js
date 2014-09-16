@@ -1,4 +1,4 @@
-var $ = require('jquery');
+//var $ = require('jquery');
 
 var func = (function () {
   $("#logon").on("click", function () {

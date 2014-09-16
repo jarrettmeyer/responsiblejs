@@ -2,97 +2,41 @@ var fs = require('fs');
 
 describe("keywords", function () {
 
-
-
-
-
-
-
-
   it("recognizes numbers", function () {
     expect(typeof 123).toEqual("number");
   });
-
-
-
-
-
-
-
 
   it("uses the IEEE 754 standard for floating point math", function () {
     expect(0.1 + 0.2).toEqual(0.30000000000000004);
     // Do not rely on precise math with JavaScript!
   });
 
-
-
-
-
-
-
-
-
   it("recognizes strings", function () {
     expect(typeof "abc").toEqual("string");
-  })
-
-
-
-
-
-
-
+  });
 
   it("recognizes functions", function () {
     expect(typeof(function () { return true; })).toEqual("function");
   });
 
-
-
-
-
-
-
-
   it("recognizes objects", function () {
     expect(typeof { name: "John Doe" }).toEqual("object");
-  })
-
-
-
-
-
-
-
-
+  });
 
   it("recognizes arrays as objects", function () {
     expect(typeof [1, 2, 3]).toEqual("object");
   });
-
-
-
-
-
 
   it("has functions on array that object does not have", function () {
     // Both arrays and objects are report as objects, but arrays have more
     // functions available to them than objects have.
     expect({ name: "John Doe" }.forEach).not.toBeDefined();
 
-
     expect(typeof [1, 2, 3].filter).toEqual("function");
     expect(typeof [1, 2, 3].forEach).toEqual("function");
     expect(typeof [1, 2, 3].map).toEqual("function");
     expect(typeof [1, 2, 3].reduce).toEqual("function");
   });
-
-
-
-
-
-
 
   it("has many falsy values", function () {
     /* A falsy value means it does not evaluate as true in a conditional statement.
@@ -125,20 +69,10 @@ describe("keywords", function () {
      */
   });
 
-
-
-
-
-
-
   it("recognizes empty arrays and empty objects as truthy", function() {
     expect([]).toBeTruthy();
     expect({}).toBeTruthy();
-  })
-
-
-
-
+  });
 
   it("has confusing results for equality", function () {
 
@@ -160,12 +94,7 @@ describe("keywords", function () {
     expect(1 == "1").toBeTruthy();
     expect(2 == "2").toBeTruthy();
     expect(3.4 == "3.4").toBeTruthy();
-
   });
-
-
-
-
 
   it("requires 3 equal signs (===) to clear up confusion", function () {
     expect([] === 0).toBeFalsy();
@@ -174,11 +103,6 @@ describe("keywords", function () {
     // === will check both type and equivalence
   });
 
-
-
-
-
-
   it("supports multiple number formats", function () {
     expect(1000).toEqual(1000);
     expect(1e3).toEqual(1000); // scientific notation
@@ -186,19 +110,9 @@ describe("keywords", function () {
     expect(0x1000).toEqual(4096); //
   });
 
-
-
-
-
-
   it("has a funky try/catch mechanism", function () {
     // Run node ./lib/trycatch.js
   });
-
-
-
-
-
 
   it("respects functional scope", function () {
     function square(x) {
@@ -212,11 +126,6 @@ describe("keywords", function () {
       expect(e.message).toEqual("sq is not defined");
     }
   });
-
-
-
-
-
 
   it("does not respect block scope", function () {
     var x = 1;
