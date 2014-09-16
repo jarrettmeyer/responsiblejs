@@ -28,11 +28,15 @@ var func = (function () {
 
 describe("separation of concerns", function () {
 
-
+  it("is a good idea", function () {
+    expect(true).toBeTruthy();
+  });
 
 });
 
 /* Better solution...
  *
  * 1.) Create a view object.
+ * 2.) Call a service object.
+ * 3.) Handle the result from the service with the view object.
  */

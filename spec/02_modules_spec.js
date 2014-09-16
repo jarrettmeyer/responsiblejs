@@ -28,7 +28,7 @@ var db = (function () {
 })();
 
 
-describe("database", function () {
+describe("my stupid database", function () {
 
 
 

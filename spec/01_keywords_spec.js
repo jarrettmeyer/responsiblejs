@@ -196,4 +196,34 @@ describe("keywords", function () {
   });
 
 
+
+
+
+
+  it("respects functional scope", function () {
+    function square(x) {
+      var sq = x * x;
+      return sq;
+    }
+    expect(square(3)).toEqual(9);
+    try {
+      expect(sq).not.toBeDefined();
+    } catch (e) {
+      expect(e.message).toEqual("sq is not defined");
+    }
+  });
+
+
+
+
+
+
+  it("does not respect block scope", function () {
+    var x = 1;
+    if (x > 0) {
+      var y = "positive";
+    }
+    expect(y).toBe("positive");
+  });
+
 });
